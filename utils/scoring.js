@@ -42,13 +42,13 @@ function scoreTechnical(p) {
   const advance  = safe(p.advance_rate_m_month, 200);
 
   // Sub-topic params: HEMM fleet & blasting efficiency
-  const shovel_out  = safe(p.shovel_output_bcmhr, 0);   // BCM/hr per shovel
+  const shovel_out  = safe(p.shovel_output_bcmhr, 0);   // Bank Cubic Meter (BCM)/hour per shovel
   const num_shovels = safe(p.num_shovels, 0);
   const num_dumpers = safe(p.num_dumpers, 0);
   const dumper_pay  = safe(p.dumper_payload_t, 85);
   const cycle_min   = safe(p.truck_cycle_min, 20);
-  const powder_f    = safe(p.powder_factor_kgbcm, 0);   // kg/BCM
-  const rqd         = safe(p.rqd_ob, 0);                // % rock quality
+  const powder_f    = safe(p.powder_factor_kgbcm, 0);   // kilograms per Bank Cubic Meter (BCM)
+  const rqd         = safe(p.rqd_ob, 0);                // Rock Quality Designation (RQD) percentage
 
   // Sub-topic: Coal Quality (ash, moisture, volatile matter)
   const ash_pct    = safe(p.ash_pct, 30);               // % ash in coal
@@ -68,13 +68,13 @@ function scoreTechnical(p) {
   // Sub-topic: Blast design geometry
   const burst_m    = safe(p.blast_burden_m, 0);         // blast burden (m)
   const spacing_m  = safe(p.blast_spacing_m, 0);        // blast spacing (m)
-  const ucs_ob     = safe(p.ucs_ob_mpa, 0);             // UCS of OB rock (MPa)
+  const ucs_ob     = safe(p.ucs_ob_mpa, 0);             // Uniaxial Compressive Strength (UCS) of Overburden (OB) rock (megapascals)
 
   // GCV score: Grade A (>6700)=100 … Grade G (<2200)=0
-  const gcv_s  = clamp((gcv - 2200) / (6700 - 2200) * 100);
+  const gcv_s  = clamp((gcv - 2200) / (6700 - 2200) * 100);  // Gross Calorific Value (GCV) score
   // SR efficiency: SR_viability = max(0, (BESR-OSR)/BESR × 100)
   const sr_viability = Math.max(0, (besr - sr) / Math.max(besr, 1) * 100);
-  const sr_s   = clamp(sr_viability);
+  const sr_s   = clamp(sr_viability);  // Stripping Ratio (SR) score
   // Recovery: 95%=100, 70%=0
   const rec_s  = clamp((recov - 70) / (95 - 70) * 100);
   // HEMM combined availability × utilisation
