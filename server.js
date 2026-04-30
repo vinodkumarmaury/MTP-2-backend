@@ -14,7 +14,7 @@ app.use('/api/history',   require('./routes/history'));
 app.use('/api/compare',     require('./routes/compare'));
 app.use('/api/sensitivity', require('./routes/sensitivity'));
 
-app.get('/', (_, res) => res.json({ status: 'ok', version: '3.0.0', service: 'CMEM API' }));
+app.get('/', (_, res) => res.json({ status: 'ok', version: '3.0.0', service: 'MCIF API' }));
 
 app.get('/api/health', async (_, res) => {
   const state = mongoose.connection.readyState;
@@ -23,7 +23,7 @@ app.get('/api/health', async (_, res) => {
     db: state === 1 ? 'connected' : 'disconnected',
     state,
     model_loaded: false,       // no sklearn ML model — analytical formula only
-    model_type: 'Analytical CMEM (AHP+EWM+CRITIC ensemble)',
+    model_type: 'Analytical MCIF (AHP+EWM+CRITIC ensemble)',
     accuracy: null             // accuracy shown on /api/compare from validate mines
   });
 });
@@ -57,19 +57,19 @@ app.get('/api/stats', async (_, res) => {
       min_mci: agg.min_mci,
       reference_mine_count: mineCount,
       model_loaded: false,
-      model_type: 'Analytical CMEM (AHP+EWM+CRITIC ensemble)'
+      model_type: 'Analytical MCIF (AHP+EWM+CRITIC ensemble)'
     });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
 // Connect & start
 const PORT = process.env.PORT || 8000;
-const MONGO_URI = process.env.MONGO_URL || process.env.MONGODB_URI || 'mongodb://localhost:27017/cmem';
+const MONGO_URI = process.env.MONGO_URL || process.env.MONGODB_URI || 'mongodb://localhost:27017/MCIF';
 
 mongoose.connect(MONGO_URI)
   .then(() => {
     console.log('✓ MongoDB connected:', MONGO_URI);
-    app.listen(PORT, () => console.log(`✓ CMEM API running on http://localhost:${PORT}`));
+    app.listen(PORT, () => console.log(`✓ MCIF API running on http://localhost:${PORT}`));
   })
   .catch(err => {
     console.error('MongoDB connection failed:', err.message);

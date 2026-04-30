@@ -696,7 +696,7 @@ const MINES = [
 
 async function seed() {
   try {
-    const uri = process.env.MONGO_URL || process.env.MONGODB_URI || 'mongodb://localhost:27017/cmem';
+    const uri = process.env.MONGO_URL || process.env.MONGODB_URI || 'mongodb://localhost:27017/MCIF';
     await mongoose.connect(uri);
     await Mine.deleteMany({});
     await Mine.insertMany(MINES);

@@ -1,5 +1,5 @@
 /**
- * CMEM Scoring Engine v3.0 — OC Coal Mine Analytical Model
+ * MCIF Scoring Engine v3.0 — OC Coal Mine Analytical Model
  * Scores 7 dimensions from 150+ input parameters
  * Returns dimension scores 0-100 and MCI
  * New in v3.0: Governance dimension + 20 additional parameters

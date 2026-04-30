@@ -1,6 +1,7 @@
-# CMEM Backend — API Server v3.0
+# MCIF Backend — API Server v3.0
 
-Express.js + MongoDB REST API for the **Composite Mine Evaluation Model (CMEM)** — an analytical scoring engine for Indian opencast coal mines.
+Express.js + MongoDB REST API for the **Mine Competitive Index Framework
+ (MCIF)** — an analytical scoring engine for Indian opencast coal mines.
 
 ## Stack
 
@@ -37,16 +38,16 @@ MTP-2-backend/
 Create a `.env` file in this directory:
 
 ```env
-MONGO_URL=mongodb://localhost:27017/cmem
+MONGO_URL=mongodb://localhost:27017/MCIF
 PORT=8000
 ```
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `MONGO_URL` | `mongodb://localhost:27017/cmem` | MongoDB connection string |
+| `MONGO_URL` | `mongodb://localhost:27017/MCIF` | MongoDB connection string |
 | `PORT` | `8000` | HTTP port |
 
-For MongoDB Atlas: `MONGO_URL=mongodb+srv://<user>:<pass>@cluster.mongodb.net/cmem`
+For MongoDB Atlas: `MONGO_URL=mongodb+srv://<user>:<pass>@cluster.mongodb.net/MCIF`
 
 ## Setup & Run
 
@@ -144,7 +145,7 @@ npm start
 
 ## Scoring Model
 
-`utils/scoring.js` implements the full analytical CMEM v3.0 pipeline:
+`utils/scoring.js` implements the full analytical MCIF v3.0 pipeline:
 
 - **7 dimensions:** Technical, Economic, Environmental, Social, Geographical, Governance, Risk
 - **Ensemble weights** (AHP 50% + EWM 30% + CRITIC 20%):
